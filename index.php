@@ -3,17 +3,14 @@
 require './class/Utilisateur.class.php';
 // Initialisation du tableau pour l'avoir même s'il est vide
 $users = [];
-// Créations des différents users
-$user1 = new Utilisateur('Donald', 'Trump');
-$user2 = new Utilisateur('Barack', 'Obama');
-$user3 = new Utilisateur('Hilary', 'Clinton');
-$user1->setMail("test@gmail.com");
-$user2->setMail("test@gmail.com");
-$user3->setMail("test@gmail.com");
-// Ajout des différents users au tableau
-$users[] = $user1;
-$users[] = $user2;
-$users[] = $user3;
+$csv = file( './users.csv' );
+
+foreach($csv as $row) {
+    $data = explode(';', $row);
+    $user = new Utilisateur($data[0], $data[1]);
+    $user->setMail($data[2]);
+    $users[] = $user;
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
