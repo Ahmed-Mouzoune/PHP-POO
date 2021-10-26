@@ -3,8 +3,9 @@
 require './class/Utilisateur.class.php';
 // Initialisation du tableau pour l'avoir même s'il est vide
 $users = [];
+// Création variable pour fichier csv
 $csv = file( './users.csv' );
-
+// Manipulation du fichier csv avec un foreach
 foreach($csv as $row) {
     $data = explode(';', $row);
     $user = new Utilisateur($data[0], $data[1]);
