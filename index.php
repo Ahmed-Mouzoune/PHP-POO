@@ -1,17 +1,23 @@
 <?php
-// Import de la classe utilisateur avec require pour faire crash l'app si ça ne l'importe pas
-require './class/Utilisateur.class.php';
+// Connexion à la bdd
+$pdo = new PDO('mysql:host=localhost;port=8888;dbname=poo','root','root');
+// SELECT de tout les users en fonction de l'id
+$sql = 'SELECT * FROM users where id = :idParam';
+$req = $pdo->prepare($sql);
+// Bind de la requête pour récupérer l'id dans le get et PDO::PARAM_INIT pour ne pas subir d'injection sql
+$req->bindParam('idParam',$_GET['id'], PDO::PARAM_INT);
+$req->execute();
+// Fetch pour récupérer le résultat de la requête
+$res = $req->fetch(PDO::FETCH_ASSOC);
 // Initialisation du tableau pour l'avoir même s'il est vide
 $users = [];
-// Création variable pour fichier csv
-$csv = file( './users.csv' );
-// Manipulation du fichier csv avec un foreach
-foreach($csv as $row) {
-    $data = explode(';', $row);
-    $user = new Utilisateur($data[0], $data[1]);
-    $user->setMail($data[2]);
+// Boucle pour faire les utilisateurs avec la bdd
+foreach( $res as $data ) {
+    $user = new Utilisateur($data[0],$data[1],$data[2],$data[3]);
     $users[] = $user;
-}
+} 
+// Import de la classe utilisateur avec require pour faire crash l'app si ça ne l'importe pas
+require './class/Utilisateur.class.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
