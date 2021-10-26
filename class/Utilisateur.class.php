@@ -13,14 +13,19 @@ class Utilisateur {
         $this->mail = $mail;
     }
 
-
-    public function getName() {
-        return $this->firstname.' '.$this->lastname;
+    public function setMail($mail) {
+        $this->mail = $mail;
     }
     public function getMail() {
         return $this->mail;
     }
-    public function setMail($mail) {
-        $this->mail = $mail;
+    public function getName() {
+        return $this->firstname.' '.$this->lastname;
+    }
+    public function getFirstName() {
+        return $this->firstname;
+    }
+    public function getLastName() {
+        return $this->lastname;
     }
 }
