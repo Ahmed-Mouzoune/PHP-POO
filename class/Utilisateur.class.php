@@ -3,7 +3,7 @@ class Utilisateur {
 
     private $firstname;
     private $lastname;
-    private $mail;
+    public $mail;
 
     public function __construct($firstname, $lastname) {
         $this->firstname = $firstname;
@@ -12,5 +12,11 @@ class Utilisateur {
 
     public function getName() {
         return $this->firstname.' '.$this->lastname;
+    }
+    public function getMail() {
+        return $this->mail;
+    }
+    public function setMail($mail) {
+        $this->mail = $mail;
     }
 }

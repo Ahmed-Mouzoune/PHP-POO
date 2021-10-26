@@ -7,6 +7,9 @@ $users = [];
 $user1 = new Utilisateur('Donald', 'Trump');
 $user2 = new Utilisateur('Barack', 'Obama');
 $user3 = new Utilisateur('Hilary', 'Clinton');
+$user1->setMail("test@gmail.com");
+$user2->setMail("test@gmail.com");
+$user3->setMail("test@gmail.com");
 // Ajout des différents users au tableau
 $users[] = $user1;
 $users[] = $user2;
@@ -25,7 +28,7 @@ $users[] = $user3;
         <?php
             // Boucle qui parcourt le tableau users et affiche un li avec la fonction getName pour afficher tout les noms prénoms des users en liste
             foreach($users as $user) {
-                echo('<li>'.$user->getName().'</li>');
+                echo('<li>'.$user->getName().' - '.$user->getMail().'</li>');
             }
         ?>
     </ul>
